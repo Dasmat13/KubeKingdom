@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>KubeFlask Galaxy</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+      background: radial-gradient(circle at center, #0d0d2b 0%, #000 100%);
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+    }
+
+    .sky {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* 🌌 Enhanced Galaxy */
+    .galaxy {
+      position: absolute;
+      top: 5%;
+      left: -10%;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: 
+        radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 15%, transparent 60%),
+        conic-gradient(
+          from 0deg at center,
+          transparent 0deg,
+          rgba(178,132,255,0.08) 20deg,
+          transparent 50deg,
+          rgba(100,181,246,0.12) 120deg,
+          transparent 170deg,
+          rgba(255,255,255,0.1) 240deg,
+          transparent 300deg,
+          rgba(178,132,255,0.1) 340deg
+        ),
+        radial-gradient(circle at center, transparent 60%, rgba(100,181,246,0.03) 80%, transparent 100%);
+      filter: blur(12px);
+      animation: rotateGalaxy 120s linear infinite;
+      opacity: 0.9;
+    }
+
+    .galaxy::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: 
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.03) 0%, transparent 30%),
+        radial-gradient(circle at 70% 60%, rgba(178,132,255,0.04) 0%, transparent 40%);
+      filter: blur(5px);
+    }
+
+    @keyframes rotateGalaxy {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* 🌠 Stars */
+    .stars::before {
+      content: '';
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: white;
+      box-shadow:
+        40px 70px white,
+        100px 150px white,
+        160px 80px white,
+        240px 200px white,
+        320px 120px white,
+        400px 300px white,
+        520px 180px white,
+        680px 90px white,
+        760px 250px white,
+        900px 300px white,
+        1000px 150px white,
+        150px 100px white,
+        200px 400px white,
+        350px 350px white,
+        450px 100px white,
+        550px 300px white,
+        600px 80px white,
+        720px 180px white,
+        850px 240px white,
+        980px 60px white,
+        1100px 220px white;
+      animation: moveStars 120s linear infinite, twinkle 2s ease-in-out infinite alternate;
+      opacity: 0.75;
+    }
+
+    @keyframes moveStars {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-150px, -150px); }
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    .shooting-star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 6px white, 0 0 12px white;
+      animation: shoot 5s linear infinite;
+    }
+
+    @keyframes shoot {
+      0% { transform: translate(0, 0); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translate(-1000px, 1000px); opacity: 0; }
+    }
+
+    .castle {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .glow {
+      font-size: 3em;
+      color: #fff;
+      text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { text-shadow: 0 0 5px #FFD700; }
+      50% { text-shadow: 0 0 25px #FFD700; }
+      100% { text-shadow: 0 0 5px #FFD700; }
+    }
+
+    .magic {
+      margin-top: 1em;
+      font-size: 1.2em;
+      color: #f0e6ff;
+      animation: fadeInUp 2s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 2em;
+      padding: 0.75em 2em;
+      font-size: 1em;
+      color: #fff;
+      background: linear-gradient(135deg, #6e8efb, #a777e3);
+      border: none;
+      border-radius: 25px;
+      text-decoration: none;
+      box-shadow: 0 0 10px #6e8efb;
+      transform: scale(0);
+      animation: bounceIn 1.2s ease-out 2s forwards;
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0); }
+      60% { transform: scale(1.2); }
+      80% { transform: scale(0.95); }
+      100% { transform: scale(1); }
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+      transition: transform 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <div class="sky">
+    <div class="stars"></div>
+    <div class="galaxy"></div>
+
+    <div class="castle">
+      <h1 class="glow">✨ Welcome to KubeFlask ✨</h1>
+      <p class="magic">Your magical journey to Cloud, Kubernetes, and CI/CD begins here.</p>
+      <a class="btn" href="https://aws.amazon.com/eks/">Enter the Kingdom 🚀</a>
+    </div>
+  </div>
+
+  <script>
+    function createShootingStar() {
+      const star = document.createElement('div');
+      star.classList.add('shooting-star');
+      star.style.top = Math.random() * 50 + '%';
+      star.style.left = (60 + Math.random() * 30) + '%';
+      star.style.animationDelay = Math.random() * 10 + 's';
+      document.querySelector('.sky').appendChild(star);
+      setTimeout(() => star.remove(), 10000);
+    }
+
+    setInterval(createShootingStar, 2500);
+  </script>
+</body>
+</html>

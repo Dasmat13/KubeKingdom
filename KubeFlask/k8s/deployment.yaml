@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-flask
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kube-flask
+  template:
+    metadata:
+      labels:
+        app: kube-flask
+    spec:
+      containers:
+      - name: kube-flask
+        image: 682761213723.dkr.ecr.us-east-1.amazonaws.com/kube-flask:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+      imagePullSecrets:
+      - name: ecr-secret
